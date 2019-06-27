@@ -4,24 +4,34 @@ import express from 'express'
 import path from 'path'
 import bodyParser from 'body-parser'
 
+import {db} from '../models'
+import passport from 'passport'
+import '../middleware/passport'
+
+
+import routes from '../routes'
+
 const app = express()
 // Parse incoming request available "req.body"
 app.use(bodyParser.json())
+app.use(passport.initialize())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function (req, res) {
-    res.send('hello world')
-})
 
-// response with file
-app.get('/docs', function (req, res) {
-    res.sendFile(path.join(__dirname, '../docs/setup_server_node.html'));
-})
+db.sync({ force: true }).then(() => {
+    app.use('/api', routes)
 
-//404 for routes undefined
-app.use((req, res, next) => {
-    res.status(404).send('oops')
+    app.use((err, res, next) => {
+        res.json({ err: err.message })
+    })
+
+    app.listen(process.env.PORT, err => {
+        if (err) {
+            console.log(err.end)
+            process.exit(1)
+        }
+        console.log(`Server is running at port ${process.env.PORT}`);
+    })
 })
 
 app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`))
