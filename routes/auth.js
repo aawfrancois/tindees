@@ -13,6 +13,7 @@ dotenv.config()
 const api = Router()
 
 api.post('/register', async (req, res) => {
+    console.log('test');
     let {nickname, email, password, password_confirmation} = req.body
 
     try {
@@ -32,6 +33,7 @@ api.post('/login', (req, res, next) => {
     try {
 
         passport.authenticate('local', {session: false}, (err, user) => {
+            console.log(err, user)
             if (err) {
                 return res.status(400).json({err: err})
             }

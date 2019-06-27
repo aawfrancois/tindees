@@ -17,9 +17,9 @@ export default class Event extends Model {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },
-                place: {
+                adress: {
                     type: DataTypes.STRING,
-                    allowNull: true,
+                    allowNull: false,
                 },
                 startDate: {
                     type: DataTypes.INTEGER,
@@ -29,7 +29,11 @@ export default class Event extends Model {
                     type: DataTypes.INTEGER,
                     allowNull: false
                 },
-                status: {
+                zipCode: {
+                    type: DataTypes.STRING,
+                    allowNull: true
+                },
+                city: {
                     type: DataTypes.STRING,
                     allowNull: false
                 }

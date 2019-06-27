@@ -67,6 +67,14 @@ export default class User extends Model {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },
+                zipCode: {
+                    type: DataTypes.STRING,
+                    allowNull: true,
+                },
+                type: {
+                    type: DataTypes.STRING,
+                    allowNull: true,
+                }
             },
             {
                 sequelize,

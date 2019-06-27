@@ -9,12 +9,12 @@ dotenv.config()
 
 passport.use(
     new LocalStrategy(
-        { username: "nickname", password: "password" },
-        async (nickname, password, done) => {
+        { usernameField: "email", passwordField: "password" },
+        async (email, password, done) => {
             try {
-                const user = await User.findOne({ where: { nickname } });
+                const user = await User.findOne({ where: { email } });
                 if (!user) {
-                    done("Please check your nickname", false);
+                    done("Please check your email", false);
                     return;
                 }
                 password = await user.checkPassword(password);
