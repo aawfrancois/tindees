@@ -1,4 +1,4 @@
-import {Model} from "sequelize";
+import {Model} from 'sequelize';
 
 export default class Category extends Model {
     static init(sequelize, DataTypes) {
@@ -11,6 +11,7 @@ export default class Category extends Model {
                 },
                 libelle: {
                     type: DataTypes.STRING,
+                    allowNull: true,
                 },
             },
             {

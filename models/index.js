@@ -2,7 +2,7 @@ import Sequelize, { Op } from 'sequelize'
 import User from './user'
 import Event from './event'
 import Category from './category'
-import UserEvent from "./userevent"
+import UserEvent from './userevent'
 import dotenv from 'dotenv'
 dotenv.config()
 
