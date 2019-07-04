@@ -31,13 +31,11 @@ api.get("/", async (request, response) => {
 
 api.post('/', async (req, res) => {
 
-    let {name, description, startDate, endDate, libelle_category, zipCode, city, adress, uuid} = req.body
-
-    const category = await Category.findOne({where: {libelle: libelle_category}})
-    console.log(category);
+    let {name, description, startDate, endDate, id_category, zipCode, city, adress, uuid} = req.body
 
     try {
-        let event = new Event({ name, description, startDate, endDate, category, zipCode, city, adress, uuid });
+        let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, adress, uuid });
+        event.id_user = uuid
         let data = await event.save()
 
         console.log(`Event save`);
