@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import Event from '../models/event';
+import Category from '../models/category'
 import _ from "lodash";
 
 import dotenv from 'dotenv';
@@ -30,10 +31,13 @@ api.get("/", async (request, response) => {
 
 api.post('/', async (req, res) => {
 
-    let {name, description, startDate, endDate, category, zipCode, city, adress} = req.body
+    let {name, description, startDate, endDate, libelle_category, zipCode, city, adress, uuid} = req.body
+
+    const category = await Category.findOne({where: {libelle: libelle_category}})
+    console.log(category);
 
     try {
-        let event = new Event({ name, description, startDate, endDate, category, zipCode, city, adress });
+        let event = new Event({ name, description, startDate, endDate, category, zipCode, city, adress, uuid });
         let data = await event.save()
 
         console.log(`Event save`);

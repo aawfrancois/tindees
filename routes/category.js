@@ -11,7 +11,11 @@ api.get("/", async (request, response) => {
         let category = await Category.findAll()
         console.log(category)
         if (category) {
-            response.status(200).json({data: category});
+            const categoryResult = []
+            category.forEach(val =>{
+                categoryResult.push({id : val.id , libelle : val.libelle})
+            })
+            response.status(200).json({data: categoryResult});
         } else {
             response.status(404).send();
         }
