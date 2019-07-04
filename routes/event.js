@@ -40,7 +40,7 @@ api.get("/", async (request, response) => {
 });
 
 
-api.get("/:uuid", async (request, response) => {
+api.get("/myevent/:uuid", async (request, response) => {
     try {
         let event = await UserEvent.findAll({where: {id: req.params.uuid}})
         if (event) {
