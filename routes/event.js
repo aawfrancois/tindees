@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import Event from '../models/event';
 import Category from '../models/category'
+import UserEvent from '../models/userevent'
 import _ from "lodash";
 
 import dotenv from 'dotenv';
@@ -28,6 +29,28 @@ api.get("/", async (request, response) => {
         });
     }
 });
+
+
+api.get("/:uuid", async (request, response) => {
+    try {
+        let event = await UserEvent.findAll({where: {id: req.params.uuid}})
+        if (event) {
+            response.status(200).json({
+                data: {
+                    event,
+                    meta: {},
+                }
+            });
+        } else {
+            response.status(404).send();
+        }
+    } catch (error) {
+        response.status(400).json({
+            err: error.message
+        });
+    }
+});
+
 
 api.post('/', async (req, res) => {
 

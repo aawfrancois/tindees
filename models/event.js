@@ -36,6 +36,11 @@ export default class Event extends Model {
                 city: {
                     type: DataTypes.STRING,
                     allowNull: false
+                },
+                status: {
+                    type: DataTypes.BOOLEAN,
+                    allowNull: false
+
                 }
             },
             {

@@ -9,7 +9,6 @@ export default class UserGame extends Model {
                     autoIncrement: true,
                     primaryKey: true
                 },
-                status: DataTypes.STRING
             },
             {
                 sequelize,
