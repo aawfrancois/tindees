@@ -8,7 +8,7 @@ dotenv.config();
 
 let api = Router();
 
-api.get("/", async (request, response) => {
+api.get("/:uuid", async (request, response) => {
 
 
     let {uuid} = request.params.uuid
