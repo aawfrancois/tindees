@@ -10,11 +10,9 @@ let api = Router();
 
 api.get("/:uuid", async (request, response) => {
 
-
-    let {uuid} = request.params.uuid
     try {
 
-        let userevent = await UserEvent.findAll({where: {user_uuid: uuid}})
+        let userevent = await UserEvent.findAll({where: {user_uuid:  request.params.uuid}})
 
         const idEventList = userevent.map((element) => element.EventId)
 
