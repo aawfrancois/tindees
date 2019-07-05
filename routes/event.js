@@ -30,7 +30,7 @@ api.get("/:uuid", async (request, response) => {
         if (dataVal) {
             response.status(200).json({
                 data: {
-                    dataVal,
+                    ...dataVal,
                     meta: {},
                 }
             });
@@ -51,7 +51,7 @@ api.get("/myevent/:uuid", async (request, response) => {
         if (event) {
             response.status(200).json({
                 data: {
-                    event,
+                    ...event,
                     meta: {},
                 }
             });
