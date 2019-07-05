@@ -1,6 +1,6 @@
 import {Model} from 'sequelize'
 
-export default class UserGame extends Model {
+export default class UserEvent extends Model {
     static init(sequelize, DataTypes) {
         return super.init(
             {

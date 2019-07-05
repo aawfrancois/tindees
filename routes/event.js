@@ -72,15 +72,33 @@ api.post('/myevent', async (req, res) => {
     let {event_id, uuid} = req.body
 
     try {
-        let userevent = new UserEvent({});
-        userevent.user_uuid = uuid;
-        userevent.event_id = event_id;
+        let userevent = new UserEvent();
+        userevent.UserUuid = uuid;
+        userevent.EventId = event_id;
+        console.log(userevent)
         let data = await userevent.save()
 
         console.log(`Event save`);
         res.json({data: data})
     } catch (error) {
         res.status(400).send({error: error.message})
+    }
+})
+
+api.delete('/myevent', async (req, res) => {
+
+    let {event_id, uuid} = req.body
+
+    try {
+        let userevent = await UserEvent.destroy({
+            where: {
+            user_uuid: uuid,
+            event_id: event_id
+        }});
+        console.log(`Deleted particpation: ${userevent} `);
+        res.status(200).json({succes: `${userevent} deleted`});
+    } catch (e) {
+        res.status(400);
     }
 })
 
