@@ -42,9 +42,21 @@ api.get("/:uuid", async (request, response) => {
 
 api.get("/myevent/:uuid", async (request, response) => {
     try {
-        let event = await UserEvent.findAll({where: {user_uuid: request.params.uuid}})
-        if (event) {
-            response.status(200).json({ data: event });
+        let userevent = await UserEvent.findAll({where: {user_uuid: request.params.uuid}})
+        let category = await Category.findAll();
+        let event = await Event.findAll();
+
+
+
+        const dataVal = userevent.map(e => {
+            const indexEvent = event.findIndex(x =>x.id === e.EventId)
+            let {zipCode , startDate, endDate, id_user, name, description, id, adress, id_category, city} = event[indexEvent]
+            const indexCat = category.findIndex(x =>x.id === id_category)
+            return { zipCode , startDate, endDate, id_user, name, description, id, adress, city, category:category[indexCat].libelle}
+        })
+
+        if (dataVal) {
+            response.status(200).json({ data: dataVal });
         } else {
             response.status(404).send();
         }
