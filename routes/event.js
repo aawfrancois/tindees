@@ -42,7 +42,7 @@ api.get("/:uuid", async (request, response) => {
 
 api.get("/myevent/:uuid", async (request, response) => {
     try {
-        let event = await UserEvent.findAll({where: {id: req.params.uuid}})
+        let event = await UserEvent.findAll({where: {id: request.params.uuid}})
         if (event) {
             response.status(200).json({ data: event });
         } else {
@@ -54,6 +54,23 @@ api.get("/myevent/:uuid", async (request, response) => {
         });
     }
 });
+
+api.post('/myevent', async (req, res) => {
+
+    let {event_id, uuid} = req.body
+
+    try {
+        let userevent = new UserEvent({});
+        userevent.user_uuid = uuid;
+        userevent.event_id = event_id;
+        let data = await userevent.save()
+
+        console.log(`Event save`);
+        res.json({data: data})
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
+})
 
 
 api.post('/', async (req, res) => {
