@@ -28,12 +28,7 @@ api.get("/:uuid", async (request, response) => {
            return {...e.dataValues, category:category[indexCat].libelle}
         })
         if (dataVal) {
-            response.status(200).json({
-                data: {
-                    ...dataVal,
-                    meta: {},
-                }
-            });
+            response.status(200).json({ data: dataVal });
         } else {
             response.status(404).send();
         }
@@ -49,12 +44,7 @@ api.get("/myevent/:uuid", async (request, response) => {
     try {
         let event = await UserEvent.findAll({where: {id: req.params.uuid}})
         if (event) {
-            response.status(200).json({
-                data: {
-                    ...event,
-                    meta: {},
-                }
-            });
+            response.status(200).json({ data: event });
         } else {
             response.status(404).send();
         }
