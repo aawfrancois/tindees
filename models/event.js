@@ -22,11 +22,11 @@ export default class Event extends Model {
                     allowNull: false,
                 },
                 startDate: {
-                    type: DataTypes.INTEGER,
+                    type: DataTypes.STRING,
                     allowNull: false
                 },
                 endDate: {
-                    type: DataTypes.INTEGER,
+                    type: DataTypes.STRING,
                     allowNull: false
                 },
                 zipCode: {

@@ -1,7 +1,6 @@
 "use strict";
 require("dotenv/config");
 import express from 'express'
-import path from 'path'
 import bodyParser from 'body-parser'
 
 import {db} from '../models'
@@ -18,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize())
 
 
-db.sync({ force: false }).then(() => {
+db.sync({ force: false}).then(() => {
     app.use('/api', routes)
 
     app.use((err, res, next) => {
