@@ -42,7 +42,7 @@ api.get("/:uuid", async (request, response) => {
 
 api.get("/myevent/:uuid", async (request, response) => {
     try {
-        let event = await UserEvent.findAll({where: {id: request.params.uuid}})
+        let event = await UserEvent.findAll({where: {user_uuid: request.params.uuid}})
         if (event) {
             response.status(200).json({ data: event });
         } else {
