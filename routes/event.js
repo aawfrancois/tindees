@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import Event from '../models/event';
 import UserEvent from '../models/userevent'
+import Category from '../models/category'
 
 import dotenv from 'dotenv';
 
@@ -17,13 +18,19 @@ api.get("/:uuid", async (request, response) => {
         const idEventList = userevent.map((element) => element.EventId)
 
         let event = await Event.findAll({where: {status: true}})
+        let category = await Category.findAll();
 
-        const result = event.filter(e => !idEventList.includes(e.id));
+        let result = event.filter(e => !idEventList.includes(e.id));
 
-        if (result) {
+        const dataVal = result.map(e => {
+                const indexCat = category.findIndex(x =>x.id === e.id_category)
+
+           return {...e.dataValues, category:category[indexCat].libelle}
+        })
+        if (dataVal) {
             response.status(200).json({
                 data: {
-                    result,
+                    dataVal,
                     meta: {},
                 }
             });
