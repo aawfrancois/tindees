@@ -15,7 +15,7 @@ api.get("/:uuid", async (request, response) => {
 
         let userevent = await UserEvent.findAll({where: {user_uuid:  request.params.uuid}})
 
-        const idEventList = userevent.map((element) => element.EventId)
+        const idEventList = userevent.map((element) => element.event_id)
 
         let event = await Event.findAll({where: {status: true}})
         let category = await Category.findAll();
@@ -49,7 +49,7 @@ api.get("/myevent/:uuid", async (request, response) => {
 
 
         const dataVal = userevent.map(e => {
-            const indexEvent = event.findIndex(x =>x.id === e.EventId)
+            const indexEvent = event.findIndex(x =>x.id === e.event_id)
             let {zipCode , startDate, endDate, id_user, name, description, id, adress, id_category, city} = event[indexEvent]
             const indexCat = category.findIndex(x =>x.id === id_category)
             return { zipCode , startDate, endDate, id_user, name, description, id, adress, city, category:category[indexCat].libelle}
@@ -73,8 +73,8 @@ api.post('/myevent', async (req, res) => {
 
     try {
         let userevent = new UserEvent();
-        userevent.UserUuid = uuid;
-        userevent.EventId = event_id;
+        userevent.user_uuid = uuid;
+        userevent.event_id = event_id;
         console.log(userevent)
         let data = await userevent.save()
 
@@ -110,7 +110,7 @@ api.post('/', async (req, res) => {
     try {
         let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, adress, uuid });
         event.status = true;
-        event.id_user = uuid;
+        event.user_uuid = uuid;
         let data = await event.save()
 
         console.log(`Event save`);
