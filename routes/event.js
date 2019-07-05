@@ -65,7 +65,7 @@ api.post('/', async (req, res) => {
 
     try {
         let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, adress, uuid });
-        event.status = 0;
+        event.status = true;
         event.id_user = uuid;
         let data = await event.save()
 
