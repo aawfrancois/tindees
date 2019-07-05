@@ -19,8 +19,8 @@ Category.init(db, Sequelize);
 UserEvent.init(db, Sequelize);
 
 
-User.belongsToMany(Event, { through: UserEvent });
-Event.belongsToMany(User, { through: UserEvent });
+User.belongsToMany(Event, { through: UserEvent, foreignKey: 'user_uuid'});
+Event.belongsToMany(User, { through: UserEvent, foreignKey: 'event_id'});
 
-User.hasOne(Event, {foreignKey: 'id_user'});
+User.hasOne(Event, {foreignKey: 'user_uuid'});
 Category.hasOne(Event, {foreignKey: 'id_category'});
