@@ -69,7 +69,6 @@ api.put("/profil/:uuid", async (request, response) => {
             return;
         }
         let field = _.pick(request.body, [
-            "nickname",
             "email",
             "firstname",
             "lastname",

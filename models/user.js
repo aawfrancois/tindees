@@ -56,7 +56,7 @@ export default class User extends Model {
                     allowNull: true,
                 },
                 birthdate: {
-                    type: DataTypes.DATE,
+                    type: DataTypes.STRING,
                     allowNull: true,
                 },
                 country: {
