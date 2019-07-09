@@ -29,7 +29,7 @@ export default class Event extends Model {
                     type: DataTypes.STRING,
                     allowNull: false
                 },
-                zipCode: {
+                zip_code: {
                     type: DataTypes.STRING,
                     allowNull: true
                 },

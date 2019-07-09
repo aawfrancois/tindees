@@ -75,7 +75,7 @@ export default class User extends Model {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },
-                zipCode: {
+                zip_code: {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },

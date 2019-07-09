@@ -74,7 +74,8 @@ api.put("/profil/:uuid", async (request, response) => {
             "lastname",
             "birthdate",
             "address",
-            "photo_url"
+            "photo_url",
+            "zip_code"
         ]);
         await user.update(field);
         console.log(`User ${uuid} update`);

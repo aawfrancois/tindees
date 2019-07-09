@@ -50,9 +50,9 @@ api.get("/myevent/:uuid", async (request, response) => {
 
         const dataVal = userevent.map(e => {
             const indexEvent = event.findIndex(x =>x.id === e.event_id)
-            let {zipCode , startDate, endDate, id_user, name, description, id, adress, id_category, city} = event[indexEvent]
+            let {zip_code , startDate, endDate, id_user, name, description, id, adress, id_category, city} = event[indexEvent]
             const indexCat = category.findIndex(x =>x.id === id_category)
-            return { zipCode , startDate, endDate, id_user, name, description, id, adress, city, category:category[indexCat].libelle}
+            return { zip_code , startDate, endDate, id_user, name, description, id, adress, city, category:category[indexCat].libelle}
         })
 
         if (dataVal) {
@@ -105,10 +105,10 @@ api.delete('/myevent', async (req, res) => {
 
 api.post('/', async (req, res) => {
 
-    let {name, description, startDate, endDate, id_category, zipCode, city, address, uuid} = req.body
+    let {name, description, startDate, endDate, id_category, zip_code, city, address, uuid} = req.body
 
     try {
-        let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, address, uuid });
+        let event = new Event({ name, description, id_category, startDate, endDate, zip_code, city, address, uuid });
         event.status = true;
         event.user_uuid = uuid;
         let data = await event.save()
