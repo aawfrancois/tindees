@@ -15,10 +15,10 @@ const api = Router()
 
 api.post('/register', async (req, res) => {
 
-    let {email, password, password_confirmation, firstname, lastname, type, country} = req.body
+    let {email, password, password_confirmation, firstname, lastname, type, country, address, photo_url} = req.body
 
     try {
-        let user = new User({ email, password, password_confirmation, firstname, lastname, type, country })
+        let user = new User({ email, password, password_confirmation, firstname, lastname, type, country, address, photo_url })
         let data = await user.save()
         // newUserEmail(email, nickname)
         console.log(`User save`);

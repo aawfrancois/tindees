@@ -105,10 +105,10 @@ api.delete('/myevent', async (req, res) => {
 
 api.post('/', async (req, res) => {
 
-    let {name, description, startDate, endDate, id_category, zipCode, city, adress, uuid} = req.body
+    let {name, description, startDate, endDate, id_category, zipCode, city, address, uuid} = req.body
 
     try {
-        let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, adress, uuid });
+        let event = new Event({ name, description, id_category, startDate, endDate, zipCode, city, address, uuid });
         event.status = true;
         event.user_uuid = uuid;
         let data = await event.save()

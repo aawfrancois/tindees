@@ -59,6 +59,14 @@ export default class User extends Model {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },
+                address: {
+                    type: DataTypes.STRING,
+                    allowNull: true,
+                },
+                photo_url: {
+                    type: DataTypes.STRING,
+                    allowNull: true,
+                },
                 country: {
                     type: DataTypes.STRING,
                     allowNull: true,

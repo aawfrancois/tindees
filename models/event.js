@@ -17,7 +17,7 @@ export default class Event extends Model {
                     type: DataTypes.STRING,
                     allowNull: true,
                 },
-                adress: {
+                address: {
                     type: DataTypes.STRING,
                     allowNull: false,
                 },
