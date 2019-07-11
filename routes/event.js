@@ -11,8 +11,7 @@ dotenv.config();
 let api = Router();
 
 api.get("/:uuid", async (request, response) => {
-    // changeStatus();
-
+    changeStatus()
     try {
 
         let userevent = await UserEvent.findAll({where: {user_uuid:  request.params.uuid}})

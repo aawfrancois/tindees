@@ -1,5 +1,4 @@
 import Event from '../models/event'
-import Sequelize, {Op} from "sequelize";
 import dotenv from 'dotenv'
 
 
@@ -7,16 +6,6 @@ dotenv.config()
 const moment = require('moment')
 moment().format();
 
-
-export const db = new Sequelize(process.env.DATABASE_URL, {
-    operatorsAliases: Op,
-    define: {
-        underscored: true,
-    },
-})
-
-
-Event.init(db, Sequelize);
 
 
 export async function changeStatus() {
