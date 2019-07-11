@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node",
+    "worker": "nodemon --exec babel-node src/updateStatusEvent.js",
     "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
