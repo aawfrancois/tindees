@@ -11,7 +11,7 @@ dotenv.config();
 let api = Router();
 
 api.get("/:uuid", async (request, response) => {
-    changeStatus();
+    // changeStatus();
 
     try {
 
