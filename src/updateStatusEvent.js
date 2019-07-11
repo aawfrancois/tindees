@@ -27,9 +27,6 @@ export async function changeStatus() {
         let CurrentDate = moment().format('YYYY-MM-DD hh:mm');
 
         event.forEach((element) => {
-            console.log(element.dataValues.endDate);
-            console.log(CurrentDate >= element.dataValues.endDate) ;
-            console.log(CurrentDate);
             if (CurrentDate >= element.dataValues.endDate) {
                 Event.sequelize.query(`UPDATE event SET status = false WHERE id = ${element.dataValues.id}`)
             }
