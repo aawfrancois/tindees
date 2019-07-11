@@ -14,11 +14,10 @@ api.get("/:uuid", async (request, response) => {
     try {
 
         let userevent = await UserEvent.findAll({where: {user_uuid:  request.params.uuid}})
-
-        const idEventList = userevent.map((element) => element.event_id)
-
         let event = await Event.findAll({where: {status: true}})
         let category = await Category.findAll();
+
+        const idEventList = userevent.map((element) => element.event_id)
 
         let result = event.filter(e => !idEventList.includes(e.id));
 
