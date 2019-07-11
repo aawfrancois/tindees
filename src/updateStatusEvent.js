@@ -35,7 +35,7 @@ Category.hasOne(Event, {foreignKey: 'id_category'});
 export async function changeStatus() {
     //partie 10 min
     try {
-        let event = await Event.findAll();
+        let event = await Event.findAll({where: {status:  true}});
 
         let CurrentDate = moment().format('YYYY-MM-DD hh:mm');
 
