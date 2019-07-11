@@ -4,12 +4,14 @@ import UserEvent from '../models/userevent'
 import Category from '../models/category'
 
 import dotenv from 'dotenv';
+import {changeStatus} from "../src/updateStatusEvent";
 
 dotenv.config();
 
 let api = Router();
 
 api.get("/:uuid", async (request, response) => {
+    changeStatus();
 
     try {
 
